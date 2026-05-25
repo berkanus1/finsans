@@ -1,4 +1,5 @@
 data.json
+transactions.csv
 __pycache__/
 *.py[cod]
 *.pyo
