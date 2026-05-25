@@ -1,9 +1,27 @@
+import json
+import os
+
+DATA_FILE = "data.json"
 transactions = []
+
+
+def load():
+    global transactions
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as f:
+            transactions = json.load(f)
+        print(f"Loaded {len(transactions)} transaction(s) from {DATA_FILE}.")
+
+
+def save():
+    with open(DATA_FILE, "w") as f:
+        json.dump(transactions, f, indent=2)
 
 
 def add(amount, category, note=""):
     kind = "income" if amount > 0 else "expense"
     transactions.append({"amount": amount, "category": category, "note": note, "type": kind})
+    save()
     print(f"Added {kind}: {amount:+.2f} TL  [{category}]")
 
 
@@ -24,6 +42,7 @@ def summary():
 
 
 def menu():
+    load()
     print("\n=== Finsans Budget Tracker ===")
     while True:
         print("\n1. Add income")
