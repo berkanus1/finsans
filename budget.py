@@ -23,10 +23,43 @@ def summary():
     balance()
 
 
+def menu():
+    print("\n=== Finsans Budget Tracker ===")
+    while True:
+        print("\n1. Add income")
+        print("2. Add expense")
+        print("3. View summary")
+        print("4. Quit")
+        choice = input("\nChoose (1-4): ").strip()
+
+        if choice == "1":
+            try:
+                amount = float(input("Amount (TL): "))
+                category = input("Category: ").strip() or "other"
+                note = input("Note (optional): ").strip()
+                add(abs(amount), category, note)
+            except ValueError:
+                print("Invalid amount. Please enter a number.")
+
+        elif choice == "2":
+            try:
+                amount = float(input("Amount (TL): "))
+                category = input("Category: ").strip() or "other"
+                note = input("Note (optional): ").strip()
+                add(-abs(amount), category, note)
+            except ValueError:
+                print("Invalid amount. Please enter a number.")
+
+        elif choice == "3":
+            summary()
+
+        elif choice == "4":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Enter 1, 2, 3, or 4.")
+
+
 if __name__ == "__main__":
-    add(5000, "salary", "May salary")
-    add(-120, "food", "groceries")
-    add(-45, "transport", "bus pass")
-    add(500, "freelance", "design work")
-    add(-200, "bills", "electricity")
-    summary()
+    menu()
