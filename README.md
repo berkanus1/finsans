@@ -17,11 +17,18 @@ A simple personal budget tracker to manage income, expenses, and monthly summari
 ```bash
 git clone https://github.com/berkanus1/finsans.git
 cd finsans
-python budget.py
+pip install -r requirements.txt
 ```
 
 ## Usage
 
+**Web arayüzü (tarayıcıdan):**
+```bash
+python app.py
+```
+Tarayıcıda `http://localhost:5000` adresini aç.
+
+**Komut satırı:**
 ```bash
 python budget.py
 ```

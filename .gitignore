@@ -1,4 +1,7 @@
 data.json
+__pycache__/
+*.pyc
+.flask_session/
 transactions.csv
 __pycache__/
 *.py[cod]
