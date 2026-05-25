@@ -1,7 +1,9 @@
+import csv
 import json
 import os
 
 DATA_FILE = "data.json"
+CSV_FILE = "transactions.csv"
 transactions = []
 
 
@@ -41,6 +43,18 @@ def summary():
     balance()
 
 
+def export_csv():
+    if not transactions:
+        print("No transactions to export.")
+        return
+    with open(CSV_FILE, "w", newline="", encoding="utf-8-sig") as f:
+        writer = csv.DictWriter(f, fieldnames=["type", "amount", "category", "note"])
+        writer.writeheader()
+        writer.writerows(transactions)
+    print(f"Exported {len(transactions)} transaction(s) to {CSV_FILE}.")
+    print(f"You can open it with Excel: {os.path.abspath(CSV_FILE)}")
+
+
 def menu():
     load()
     print("\n=== Finsans Budget Tracker ===")
@@ -48,8 +62,9 @@ def menu():
         print("\n1. Add income")
         print("2. Add expense")
         print("3. View summary")
-        print("4. Quit")
-        choice = input("\nChoose (1-4): ").strip()
+        print("4. Export to CSV")
+        print("5. Quit")
+        choice = input("\nChoose (1-5): ").strip()
 
         if choice == "1":
             try:
@@ -73,11 +88,14 @@ def menu():
             summary()
 
         elif choice == "4":
+            export_csv()
+
+        elif choice == "5":
             print("Goodbye!")
             break
 
         else:
-            print("Invalid choice. Enter 1, 2, 3, or 4.")
+            print("Invalid choice. Enter 1, 2, 3, 4, or 5.")
 
 
 if __name__ == "__main__":
