@@ -12,6 +12,14 @@ A simple personal budget tracker to manage income, expenses, and monthly summari
 
 - Python 3.8+
 
+## Getting Started
+
+```bash
+git clone https://github.com/berkanus1/finsans.git
+cd finsans
+python budget.py
+```
+
 ## Usage
 
 ```bash
